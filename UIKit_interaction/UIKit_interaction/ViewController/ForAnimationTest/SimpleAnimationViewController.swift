@@ -59,8 +59,8 @@ class SimpleAnimationViewController: UIViewController {
         UIView.animate(withDuration: 1, delay: 0) {
             print(self.frameButton.frame)
             print(self.frameButton.center)
-//            self.frameButton.frame = CGRect(x: 100, y: 500, width: 177.33333333333334, height: 34.0)
-            self.frameButton.center = CGPoint(x: 200, y: 500)
+            self.frameButton.frame = CGRect(x: 100, y: 500, width: 200, height: 100)
+//            self.frameButton.center = CGPoint(x: 200, y: 500)
         } completion: { _ in
             self.frameButton.frame = CGRect(x: 0, y: 200, width: 177.33333333333334, height: 34.0)
         }
@@ -165,7 +165,7 @@ class SimpleAnimationViewController: UIViewController {
         view.addSubview(sizeButton)
         view.addSubview(testView)
         
-//        testView.center = view.center
+        testView.center = view.center
         
         makeConstraints()
     }
@@ -173,11 +173,13 @@ class SimpleAnimationViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        testView.center = view.center
-        sizeButton.frame = CGRect(x: 0, y: 700, width: 100, height: 100)
+        print("viewDidLayoutSubviews 호출")
+//        testView.center = view.center
+        sizeButton.frame = CGRect(x: 0, y: 700, width: 100, height: 100) //break-이거 2연속 호출?
     }
     
     private func makeConstraints() {
+        print("make Constraints 함수 호출")
         NSLayoutConstraint.activate([
             colorButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             colorButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 2.2),
