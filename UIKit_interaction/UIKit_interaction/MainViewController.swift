@@ -11,9 +11,19 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
-
-
+    
+    private func configureNavBar() {
+        title = "UIKit Study"
+        
+        //barStyle - status bar의 컬러 컨셉도 함께 지정된다.
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+    }
+    
+    
 }
 
