@@ -13,6 +13,7 @@ class SimpleAnimationViewController: UIViewController {
     private lazy var colorButton: UIButton = {
         let button = UIButton()
         button.setTitle("ColorButton", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
 //        button.backgroundColor = .yellow // 둘다 매기면 layer 색으로 들어.. -> MARK: NONO! 그냥 호출순서 차이. 둘이 동일한건가...
         button.layer.backgroundColor = UIColor.red.cgColor //layer가 한 층 윗단계.
@@ -43,6 +44,7 @@ class SimpleAnimationViewController: UIViewController {
     private lazy var frameButton: UIButton = {
         let button = UIButton()
         button.setTitle("frameButton", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
 //        button.backgroundColor = .yellow // 둘다 매기면 layer 색으로 들어간다.
         button.layer.backgroundColor = UIColor.green.cgColor //layer가 한 층 윗단계.
@@ -76,6 +78,7 @@ class SimpleAnimationViewController: UIViewController {
     private lazy var subButton: UIButton = {
         let button = UIButton()
         button.setTitle("subButton", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.backgroundColor = UIColor.yellow.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +99,7 @@ class SimpleAnimationViewController: UIViewController {
     private lazy var subButton2: UIButton = {
         let button = UIButton()
         button.setTitle("subButton2", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.backgroundColor = UIColor.yellow.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +119,7 @@ class SimpleAnimationViewController: UIViewController {
     private lazy var sizeButton: UIButton = {
         let button = UIButton()
         button.setTitle("sizeButton", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.backgroundColor = UIColor.black.cgColor
         button.backgroundColor = .green
@@ -133,16 +138,23 @@ class SimpleAnimationViewController: UIViewController {
             print(frame.size)
             print(self.sizeButton.frame.size)
 //            self.sizeButton.frame.size = frame.size // -> size 수정은 동작이 이상하다...
-            self.sizeButton.frame.origin = frame.origin
+            self.sizeButton.center = self.view.center
             self.sizeButton.alpha = 0.5
             self.sizeButton.backgroundColor = UIColor.green
+            
+            self.testView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         }
     }
     
+    private let testView: UIView = {
+        let uiView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        uiView.backgroundColor = .orange
+        return uiView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         view.addSubview(colorButton)
@@ -151,6 +163,9 @@ class SimpleAnimationViewController: UIViewController {
         uiView.addSubview(subButton)
         uiView.addSubview(subButton2)
         view.addSubview(sizeButton)
+        view.addSubview(testView)
+        
+//        testView.center = view.center
         
         makeConstraints()
     }
@@ -158,6 +173,7 @@ class SimpleAnimationViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        testView.center = view.center
         sizeButton.frame = CGRect(x: 0, y: 700, width: 100, height: 100)
     }
     
