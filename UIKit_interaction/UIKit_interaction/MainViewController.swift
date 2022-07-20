@@ -12,7 +12,8 @@ class MainViewController: UIViewController {
     private let listContents = [
         "TableView Setting",
         "CollectionView Setting",
-        "ScrollView Setting"
+        "ScrollView Setting",
+        "Simple Animation"
     ]
     
     private let tableView: UITableView = {
@@ -75,6 +76,8 @@ private extension MainViewController {
             return CollectionViewController()
         case "ScrollView Setting":
             return ScrollViewController()
+        case "Simple Animation":
+            return SimpleAnimationViewController()
         default:
             return UIViewController()
         }

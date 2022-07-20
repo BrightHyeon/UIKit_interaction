@@ -15,6 +15,7 @@
 		96E9854E28880E3100276831 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9854D28880E3100276831 /* ScrollViewController.swift */; };
 		96E98550288810C200276831 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9854F288810C200276831 /* CollectionViewController.swift */; };
 		96E985522888153000276831 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E985512888153000276831 /* TableViewController.swift */; };
+		96E98557288825DE00276831 /* SimpleAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E98556288825DE00276831 /* SimpleAnimationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		96E9854D28880E3100276831 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		96E9854F288810C200276831 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		96E985512888153000276831 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		96E98556288825DE00276831 /* SimpleAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnimationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,11 +76,28 @@
 		96E985542888154100276831 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				96E98555288825BF00276831 /* ForScrollTest */,
+				96E98558288825E200276831 /* ForAnimationTest */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		96E98555288825BF00276831 /* ForScrollTest */ = {
+			isa = PBXGroup;
+			children = (
 				96E985512888153000276831 /* TableViewController.swift */,
 				96E9854F288810C200276831 /* CollectionViewController.swift */,
 				96E9854D28880E3100276831 /* ScrollViewController.swift */,
 			);
-			path = ViewController;
+			path = ForScrollTest;
+			sourceTree = "<group>";
+		};
+		96E98558288825E200276831 /* ForAnimationTest */ = {
+			isa = PBXGroup;
+			children = (
+				96E98556288825DE00276831 /* SimpleAnimationViewController.swift */,
+			);
+			path = ForAnimationTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E9853E28880B4F00276831 /* MainViewController.swift in Sources */,
+				96E98557288825DE00276831 /* SimpleAnimationViewController.swift in Sources */,
 				96E985522888153000276831 /* TableViewController.swift in Sources */,
 				96E9853A28880B4F00276831 /* AppDelegate.swift in Sources */,
 				96E9853C28880B4F00276831 /* SceneDelegate.swift in Sources */,
