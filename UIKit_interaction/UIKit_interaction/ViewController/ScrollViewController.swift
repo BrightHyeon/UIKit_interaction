@@ -61,6 +61,24 @@ class ScrollViewController: UIViewController {
         return label
     }()
     
+    private let label6: UILabel = {
+        let label = UILabel()
+        label.text = "Scroll Test"
+        label.font = .systemFont(ofSize: 20)
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let label7: UILabel = {
+        let label = UILabel()
+        label.text = "Scroll Test"
+        label.font = .systemFont(ofSize: 20)
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override func viewDidLoad() {
         
         view.backgroundColor = .systemBackground
@@ -72,13 +90,15 @@ class ScrollViewController: UIViewController {
         mainScroll.addSubview(label3)
         mainScroll.addSubview(label4)
         mainScroll.addSubview(label5)
+        mainScroll.addSubview(label6)
+        mainScroll.addSubview(label7)
         
         makeConstraints()
     }
     
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            //필수 3가지 ...
+            //필수 3가지 ... MARK: frame보단 이렇게 constraints로 하는게 좀더 올바르고 dynamic하다.
             mainScroll.topAnchor.constraint(equalTo: view.topAnchor),
             mainScroll.widthAnchor.constraint(equalTo: view.widthAnchor),
             mainScroll.heightAnchor.constraint(equalTo: view.heightAnchor),
@@ -103,12 +123,22 @@ class ScrollViewController: UIViewController {
             label4.widthAnchor.constraint(equalToConstant: 370),
             label4.heightAnchor.constraint(equalToConstant: 200),
             
-            label5.topAnchor.constraint(equalTo: label4.bottomAnchor, constant: 20),
+            label5.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 20),
             label5.centerXAnchor.constraint(equalTo: mainScroll.centerXAnchor),
             label5.widthAnchor.constraint(equalToConstant: 370),
             label5.heightAnchor.constraint(equalToConstant: 200),
+            
+            label6.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 20),
+            label6.centerXAnchor.constraint(equalTo: mainScroll.centerXAnchor),
+            label6.widthAnchor.constraint(equalToConstant: 370),
+            label6.heightAnchor.constraint(equalToConstant: 200),
+            
+            label7.topAnchor.constraint(equalTo: label4.bottomAnchor, constant: 20),
+            label7.centerXAnchor.constraint(equalTo: mainScroll.centerXAnchor),
+            label7.widthAnchor.constraint(equalToConstant: 370),
+            label7.heightAnchor.constraint(equalToConstant: 200),
             //MARK: IMPORTANT - 이게 Real 핵심 keypoint이다. 마지막 요소의 bottom과 Scroll존의 bottom을 명시적으로 맞춰주는 것~!
-            label5.bottomAnchor.constraint(equalTo: mainScroll.bottomAnchor, constant: -100)
+            label7.bottomAnchor.constraint(equalTo: mainScroll.bottomAnchor, constant: -100)
             //MARK: 컴포넌트의 시작점(top)과 끝점(bottom)의 Anchor를 현재 속해있는 ScrollView와 잘 매칭시켜주는 것이 핵심이다.
         ])
     }
