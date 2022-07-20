@@ -16,6 +16,7 @@ class CollectionViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
         collectionView.backgroundColor = .green
+        collectionView.contentInset = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         return collectionView
     }()
 
@@ -38,7 +39,7 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,3 +48,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
 }
+
+/*
+ UICollectionView는 그냥 컨텐츠 적으면 안넘고, 많으면 스크롤 된다.
+ */
