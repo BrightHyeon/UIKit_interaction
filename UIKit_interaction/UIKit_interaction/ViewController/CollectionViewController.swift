@@ -15,13 +15,14 @@ class CollectionViewController: UIViewController {
         layout.itemSize = CGSize(width: 100, height: 100)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
+        collectionView.backgroundColor = .green
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         
         view.addSubview(mainCollection)
         mainCollection.delegate = self

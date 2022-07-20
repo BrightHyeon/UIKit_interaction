@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
         "ScrollView Setting"
     ]
     
-    private let mainTable: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
@@ -28,15 +28,15 @@ class MainViewController: UIViewController {
         
         configureNavBar()
         
-        view.addSubview(mainTable)
-        mainTable.delegate = self
-        mainTable.dataSource = self
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        mainTable.frame = view.bounds
+        tableView.frame = view.bounds
     }
 }
 
@@ -84,10 +84,17 @@ private extension MainViewController {
 /*
  <Insights>
  
- 7/20
- - mainTable.frame = view.bounds
-   혹은
- - translate... = false & layoutConstraints 조합
-   등으로 크기를 지정하여 UITableView를 View에 띄울 수 있다.
- - 둘 다 컨텐츠가 적은 상황에도 스크롤이 가능하다. (default list임) -> 예상이랑 다르네...
+ MARK: 7/20
+ 
+ - TableView, CollectionView 등에서 크기를 지정하는 법
+ 1) mainTable.frame = view.bounds
+    OR
+ 2) translate... = false && layoutConstraints 조합
+ 3) TODO: tableView.contentSize = view.bounds.size
+ 
+ - Scroll 가능 여부
+ 1) 자신의 크기보다 내부 Subviews들의 크기 합이 더 작을 때
+    - UITableView: 스크롤 가능
+    - UICollectionView: 스크롤 불가능
+    - UIScrollView: 스크롤 불가능
  */
