@@ -159,6 +159,12 @@ class ScrollViewController: UIViewController {
  어디에 이 값을 넣었느냐에 따라 스크롤 유무가 바뀐듯 하다.
  contentSize에 만약 height를 당장 700정도만 넣어도 스크롤이 잘 되질않는다.
  
+ 실제로 UILabel, UIButton 등에는 frame은 있지만, contentSize라는 프로퍼티가 없다.
+ 현재 확인한 결과로는 UITableView, UICollectionView, UIScrollView 등이 가지고 있는데 이 역시 원래 UIScrollView의 프로퍼티이고 나머지는 이를 상속하기에 사용가능한 것이다.
+ 
+ 하지만 우리의 스크롤 문제에선 이게 중요한 것은 아니다. 이건 단지 순간적으로 스크롤존이 커져서 조금이나마 스크롤이 된 것 뿐이다.
+ 키포인트는 top과 bottom을 컴포넌트와 명시적으로 constraints를 매칭시켜주는 것이다.
+ 
  Young 멘토가 말씀하시길,
  frame은 get 용도로 쓰는 것이 좋고, set으로 쓰는 것은 지양하는 것이 좋다고하신다.
  
