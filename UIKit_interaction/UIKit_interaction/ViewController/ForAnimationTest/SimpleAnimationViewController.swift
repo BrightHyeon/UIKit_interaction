@@ -14,7 +14,7 @@ class SimpleAnimationViewController: UIViewController {
         let button = UIButton()
         button.setTitle("ColorButton", for: .normal)
         button.layer.cornerRadius = 5
-//        button.backgroundColor = .yellow // 둘다 매기면 layer 색으로 들어간다.
+//        button.backgroundColor = .yellow // 둘다 매기면 layer 색으로 들어.. -> MARK: NONO! 그냥 호출순서 차이. 둘이 동일한건가...
         button.layer.backgroundColor = UIColor.red.cgColor //layer가 한 층 윗단계.
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
@@ -112,6 +112,32 @@ class SimpleAnimationViewController: UIViewController {
         }
     }
     
+    private lazy var sizeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("sizeButton", for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.backgroundColor = UIColor.black.cgColor
+        button.backgroundColor = .green
+//        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(changeSizeOfSizeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func changeSizeOfSizeButton() {
+        var frame = sizeButton.frame
+        frame.origin = view.center
+        frame.size = CGSize(width: 200, height: 200)
+        
+        UIView.animate(withDuration: 3) {
+            //MARK: 아래 두 요소를 따로따로 사용하면 원하는대로 동작함... 근데 같이 쓰면 이상한데서 기존 자리로 날아오는 형태로 된다...
+            print(frame.size)
+            print(self.sizeButton.frame.size)
+//            self.sizeButton.frame.size = frame.size // -> size 수정은 동작이 이상하다...
+            self.sizeButton.frame.origin = frame.origin
+            self.sizeButton.alpha = 0.5
+            self.sizeButton.backgroundColor = UIColor.green
+        }
+    }
     
 
     override func viewDidLoad() {
@@ -124,8 +150,15 @@ class SimpleAnimationViewController: UIViewController {
         view.addSubview(uiView)
         uiView.addSubview(subButton)
         uiView.addSubview(subButton2)
+        view.addSubview(sizeButton)
         
         makeConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        sizeButton.frame = CGRect(x: 0, y: 700, width: 100, height: 100)
     }
     
     private func makeConstraints() {
@@ -150,6 +183,10 @@ class SimpleAnimationViewController: UIViewController {
             subButton2.centerYAnchor.constraint(equalTo: uiView.centerYAnchor, constant: 50),
             subButton2.widthAnchor.constraint(equalToConstant: 100),
             subButton2.heightAnchor.constraint(equalToConstant: 100)
+            
+//            sizeButton.topAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 20),
+//            sizeButton.widthAnchor.constraint(equalToConstant: 100),
+//            sizeButton.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
