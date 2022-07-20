@@ -99,7 +99,6 @@ class ScrollViewController: UIViewController {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             //필수 3가지 ... MARK: frame보단 이렇게 constraints로 하는게 좀더 올바르고 dynamic하다.
-            mainScroll.topAnchor.constraint(equalTo: view.topAnchor),
             mainScroll.widthAnchor.constraint(equalTo: view.widthAnchor),
             mainScroll.heightAnchor.constraint(equalTo: view.heightAnchor),
             
