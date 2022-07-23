@@ -13,7 +13,9 @@ class MainViewController: UIViewController {
         "TableView Setting",
         "CollectionView Setting",
         "ScrollView Setting",
-        "Simple Animation"
+        "Simple Animation",
+        "Zoom Animation",
+        "Go to Main"
     ]
     
     private let tableView: UITableView = {
@@ -78,6 +80,10 @@ private extension MainViewController {
             return ScrollViewController()
         case "Simple Animation":
             return SimpleAnimationViewController()
+        case "Zoom Animation":
+            return ZoomViewController()
+        case "Go to Main":
+            return MainViewController()
         default:
             return UIViewController()
         }

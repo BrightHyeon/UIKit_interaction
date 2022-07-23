@@ -116,33 +116,41 @@ class SimpleAnimationViewController: UIViewController {
         }
     }
     
-    private lazy var sizeButton: UIButton = {
+    private let sizeButton: UIButton = {
         let button = UIButton()
         button.setTitle("sizeButton", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.backgroundColor = UIColor.black.cgColor
         button.backgroundColor = .green
-//        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(changeSizeOfSizeButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(changeSizeOfSizeButton), for: .touchUpInside)
         return button
     }()
     
     @objc func changeSizeOfSizeButton() {
-        var frame = sizeButton.frame
-        frame.origin = view.center
-        frame.size = CGSize(width: 200, height: 200)
+//        let animator = UIViewPropertyAnimator(duration: 2, curve: .easeInOut) {
+//            self.sizeButton.frame = CGRect(x: 300, y: 500, width: 200, height: 200)
+//        }
+//        animator.startAnimation()
         
-        UIView.animate(withDuration: 3) {
-            //MARK: 아래 두 요소를 따로따로 사용하면 원하는대로 동작함... 근데 같이 쓰면 이상한데서 기존 자리로 날아오는 형태로 된다...
-            print(frame.size)
-            print(self.sizeButton.frame.size)
-//            self.sizeButton.frame.size = frame.size // -> size 수정은 동작이 이상하다...
-            self.sizeButton.center = self.view.center
-            self.sizeButton.alpha = 0.5
-            self.sizeButton.backgroundColor = UIColor.green
+//        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut) {
+//            self.sizeButton.frame = CGRect(x: 300, y: 500, width: 200, height: 200)
+//        }
+
+        UIView.animate(withDuration: 1) {
+//            self.sizeButton.frame = CGRect(x: 300, y: 500, width: 200, height: 200)
+//            self.sizeButton.alpha = 0.5
+//            self.sizeButton.backgroundColor = UIColor.green
+//
+//            self.testView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
             
-            self.testView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+            NSLayoutConstraint.activate([
+                self.sizeButton.widthAnchor.constraint(equalToConstant: 200),
+                self.sizeButton.heightAnchor.constraint(equalToConstant: 200),
+                self.sizeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                self.sizeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            ])
         }
     }
     
@@ -165,7 +173,9 @@ class SimpleAnimationViewController: UIViewController {
         view.addSubview(sizeButton)
         view.addSubview(testView)
         
-        testView.center = view.center
+        sizeButton.addTarget(self, action: #selector(changeSizeOfSizeButton), for: .touchUpInside)
+        
+//        testView.center = view.center
         
         makeConstraints()
     }
@@ -174,8 +184,6 @@ class SimpleAnimationViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         print("viewDidLayoutSubviews 호출")
-//        testView.center = view.center
-        sizeButton.frame = CGRect(x: 0, y: 700, width: 100, height: 100) //break-이거 2연속 호출?
     }
     
     private func makeConstraints() {
@@ -200,11 +208,12 @@ class SimpleAnimationViewController: UIViewController {
             subButton2.centerXAnchor.constraint(equalTo: uiView.centerXAnchor, constant: 50),
             subButton2.centerYAnchor.constraint(equalTo: uiView.centerYAnchor, constant: 50),
             subButton2.widthAnchor.constraint(equalToConstant: 100),
-            subButton2.heightAnchor.constraint(equalToConstant: 100)
+            subButton2.heightAnchor.constraint(equalToConstant: 100),
             
-//            sizeButton.topAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 20),
-//            sizeButton.widthAnchor.constraint(equalToConstant: 100),
-//            sizeButton.heightAnchor.constraint(equalToConstant: 100)
+            sizeButton.widthAnchor.constraint(equalToConstant: 100),
+            sizeButton.heightAnchor.constraint(equalToConstant: 100),
+            sizeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            sizeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
         ])
     }
 }
@@ -230,4 +239,24 @@ class SimpleAnimationViewController: UIViewController {
  -> TODO: FIXME: ... 방향도 원하는 방향이 아니고, 이상하다. 그리고 completion에 크기 바꿔놓아도 초기 layoutConstraints값으로 돌아간다.
  
  center와 frame의 x,y 조작은 둘다 같은 CGPoint type이기에 혼합도 가능하고, 애니메이션 동작도 유사하다.
+ */
+
+/*
+ let animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
+     self.backgroundImage.frame.size = CGSize(
+         width: self.width*CGFloat(self.isBig ? 2 : 1),
+         height: self.height*CGFloat(self.isBig ? 2 : 1)
+     )
+     self.label.frame = CGRect(
+         x: self.backgroundImage.frame.minX + self.backgroundImage.frame.width / 4,
+         y: self.backgroundImage.frame.minY + self.backgroundImage.frame.width / 4,
+         width: self.backgroundImage.frame.width / 3,
+         height: self.backgroundImage.frame.width / 3)
+     self.backgroundImage.frame.origin = CGPoint(
+         x: <#T##CGFloat#>,
+         y: <#T##CGFloat#>
+     )
+ }
+ animator.startAnimation()
+}
  */

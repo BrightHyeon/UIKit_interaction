@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9641B9F9288A7FE000E57792 /* ZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9641B9F8288A7FE000E57792 /* ZoomViewController.swift */; };
+		96DBD9BD288BD3BB006B2767 /* MaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBD9BC288BD3BB006B2767 /* MaskViewController.swift */; };
 		96E9853A28880B4F00276831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9853928880B4F00276831 /* AppDelegate.swift */; };
 		96E9853C28880B4F00276831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9853B28880B4F00276831 /* SceneDelegate.swift */; };
 		96E9853E28880B4F00276831 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9853D28880B4F00276831 /* MainViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9641B9F8288A7FE000E57792 /* ZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomViewController.swift; sourceTree = "<group>"; };
+		96DBD9BC288BD3BB006B2767 /* MaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskViewController.swift; sourceTree = "<group>"; };
 		96E9853628880B4F00276831 /* UIKit_interaction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit_interaction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E9853928880B4F00276831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96E9853B28880B4F00276831 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				96E98556288825DE00276831 /* SimpleAnimationViewController.swift */,
+				9641B9F8288A7FE000E57792 /* ZoomViewController.swift */,
+				96DBD9BC288BD3BB006B2767 /* MaskViewController.swift */,
 			);
 			path = ForAnimationTest;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 				96E9853C28880B4F00276831 /* SceneDelegate.swift in Sources */,
 				96E9854E28880E3100276831 /* ScrollViewController.swift in Sources */,
 				96E98550288810C200276831 /* CollectionViewController.swift in Sources */,
+				96DBD9BD288BD3BB006B2767 /* MaskViewController.swift in Sources */,
+				9641B9F9288A7FE000E57792 /* ZoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
