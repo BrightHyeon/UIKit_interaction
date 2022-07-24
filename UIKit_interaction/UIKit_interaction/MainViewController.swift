@@ -15,7 +15,9 @@ class MainViewController: UIViewController {
         "ScrollView Setting",
         "Simple Animation",
         "Zoom Animation",
-        "Go to Main"
+        "Go to Main",
+        "Mask Test",
+        "SubView Animation Test"
     ]
     
     private let tableView: UITableView = {
@@ -84,6 +86,10 @@ private extension MainViewController {
             return ZoomViewController()
         case "Go to Main":
             return MainViewController()
+        case "Mask Test":
+            return AngryViewController()
+        case "SubView Animation Test":
+            return SubViewAnimationController()
         default:
             return UIViewController()
         }
