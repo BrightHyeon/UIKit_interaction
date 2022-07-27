@@ -11,9 +11,9 @@ import SwiftUI
 
 class AngryViewController: UIViewController {
     
-    private var currentIndex: Int = 0 {
+    private var currentIndex: Int = 0 { //
         didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1 , execute: {
                 self.setShadows()
             })
         }
@@ -46,7 +46,7 @@ class AngryViewController: UIViewController {
     private lazy var xButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 200, width: 100, height: 100))
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.addTarget(self, action: #selector(zoomOutAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(zoomAction), for: .touchUpInside)
         return button
     }()
     
@@ -60,6 +60,13 @@ class AngryViewController: UIViewController {
     private func memoButton(_ memo: Memo) -> UIButton {
         let button = UIButton(frame: memo.memoFrame)
         button.setImage(UIImage(named: memo.memoAnimal), for: .normal)
+        // FIXME: 좀 더 알아보고 추가 리팩토링 때 시도하기.
+//        button.autoresizingMask = .flexibleWidth
+//        button.autoresizingMask = .flexibleHeight
+//        button.autoresizingMask = .flexibleBottomMargin
+//        button.autoresizingMask = .flexibleLeftMargin
+//        button.autoresizingMask = .flexibleTopMargin
+//        button.autoresizingMask = .flexibleRightMargin
         return button
     }
     
@@ -79,15 +86,21 @@ class AngryViewController: UIViewController {
         for (idx, i) in memos.enumerated().reversed() { // .enumeratad.reversed 순서 중요. 이렇게 해야 index도 거꾸로 들어옴.
             let button = memoButton(i)
             button.tag = idx // tag는 순서대로 잘 달린다. cause reversed()
-            button.addTarget(self, action: #selector(zoomInAction(_:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(zoomAction(_:)), for: .touchUpInside)
             buttons.append(button)
             backImageView.addSubview(button)
         }
         
-        setShadows()
+//        setShadows()
         
         view.addSubview(xButton)
         view.addSubview(plusButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setShadows()
     }
     
     func setShadows() { //각 memo의 outMaskLayers 추가.
@@ -102,22 +115,28 @@ class AngryViewController: UIViewController {
         backImageView.insertSubview(blackView, at: memos.count - currentIndex - 1)
     }
     
-    @objc func zoomInAction(_ sender: UIButton) {
+    @objc func zoomAction(_ sender: UIButton) {
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut) { [weak self] in
             guard let self = self else { return }
 
-            Zoom.status = .zoomIn
+            if Zoom.status == .zoomIn {
+                Zoom.status = .zoomOut
+            } else {
+                Zoom.status = .zoomIn
+            }
 
             self.backImageView.frame = self.memos[sender.tag].backImageFrame //
             self.blackView.frame = self.backImageView.bounds //frame 할당하면 안되다가 bounds주니까 되네...?
-            print("backImageView's frame: \(self.backImageView.frame)")
-            print("blackView's frame: \(self.blackView.frame)")
 
             let _ = self.buttons.map { button in
                 button.frame = self.memos[button.tag].memoFrame
             }
         }
-        self.zoomInAnimate(tag: sender.tag)
+        if Zoom.status == .zoomIn {
+            self.zoomInAnimate(tag: sender.tag)
+        } else {
+            self.animate2()
+        }
     }
     
     deinit {
@@ -140,24 +159,6 @@ class AngryViewController: UIViewController {
             self.maskLayer.path = path.cgPath
         }
     }
-//
-    @objc func zoomOutAction() {
-        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut) { [weak self] in
-            guard let self = self else { return }
-
-            Zoom.status = .zoomOut
-
-            self.backImageView.frame = UIScreen.main.bounds
-            self.blackView.frame = self.backImageView.bounds
-            print("backImageView's frame: \(self.backImageView.frame)")
-            print("blackView's frame: \(self.blackView.frame)")
-
-            let _ = self.buttons.map { button in
-                button.frame = self.memos[button.tag].memoFrame
-            }
-        }
-        self.animate2()
-    }
 
     func animate2() {
         let path = UIBezierPath(rect: view.bounds)
@@ -179,6 +180,14 @@ class AngryViewController: UIViewController {
         self.currentIndex += 1
     }
 }
+
+
+
+
+
+
+
+
 
 enum Zoom {
     case zoomIn
@@ -210,13 +219,17 @@ struct Memo {
     }
     
     var backImageFrame: CGRect { // 확대 시 배경 corkboard 크기
-        return CGRect(
-            origin: CGPoint(
-                x: -.screenW*2 / memoRatio[0] + .screenW/5,
-                y: -.screenH*2 / memoRatio[1] + .screenH/3
-            ),
-            size: .backDoubleSize
-        )
+        if isZoomMode {
+            return CGRect(
+                origin: CGPoint(
+                    x: -.screenW*2 / memoRatio[0] + .screenW/5,
+                    y: -.screenH*2 / memoRatio[1] + .screenH/3
+                ),
+                size: .backDoubleSize
+            )
+        } else {
+            return UIScreen.main.bounds
+        }
     }
     
     var backPathFrame: UIBezierPath { // 확대 시 배경 path 크기

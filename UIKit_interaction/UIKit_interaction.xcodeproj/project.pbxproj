@@ -10,6 +10,7 @@
 		9641B9F9288A7FE000E57792 /* ZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9641B9F8288A7FE000E57792 /* ZoomViewController.swift */; };
 		964E45C4288D12FA004A43D4 /* ClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E45C3288D12FA004A43D4 /* ClearViewController.swift */; };
 		964E45C6288D5B68004A43D4 /* AngryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E45C5288D5B68004A43D4 /* AngryViewController.swift */; };
+		9656BC5128913F8800318D07 /* LayoutAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656BC5028913F8800318D07 /* LayoutAnimationViewController.swift */; };
 		96DBD9BD288BD3BB006B2767 /* MaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBD9BC288BD3BB006B2767 /* MaskViewController.swift */; };
 		96DBD9BF288BF602006B2767 /* SubViewAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBD9BE288BF602006B2767 /* SubViewAnimationController.swift */; };
 		96E9853A28880B4F00276831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9853928880B4F00276831 /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 		9641B9F8288A7FE000E57792 /* ZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomViewController.swift; sourceTree = "<group>"; };
 		964E45C3288D12FA004A43D4 /* ClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearViewController.swift; sourceTree = "<group>"; };
 		964E45C5288D5B68004A43D4 /* AngryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryViewController.swift; sourceTree = "<group>"; };
+		9656BC5028913F8800318D07 /* LayoutAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnimationViewController.swift; sourceTree = "<group>"; };
 		96DBD9BC288BD3BB006B2767 /* MaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskViewController.swift; sourceTree = "<group>"; };
 		96DBD9BE288BF602006B2767 /* SubViewAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewAnimationController.swift; sourceTree = "<group>"; };
 		96E9853628880B4F00276831 /* UIKit_interaction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit_interaction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 				964E45C3288D12FA004A43D4 /* ClearViewController.swift */,
 				96DBD9BE288BF602006B2767 /* SubViewAnimationController.swift */,
 				964E45C5288D5B68004A43D4 /* AngryViewController.swift */,
+				9656BC5028913F8800318D07 /* LayoutAnimationViewController.swift */,
 			);
 			path = ForAnimationTest;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9656BC5128913F8800318D07 /* LayoutAnimationViewController.swift in Sources */,
 				964E45C6288D5B68004A43D4 /* AngryViewController.swift in Sources */,
 				964E45C4288D12FA004A43D4 /* ClearViewController.swift in Sources */,
 				96E9853E28880B4F00276831 /* MainViewController.swift in Sources */,

@@ -17,7 +17,8 @@ class MainViewController: UIViewController {
         "Zoom Animation",
         "Go to Main",
         "Mask Test",
-        "SubView Animation Test"
+        "SubView Animation Test",
+        "Layout Animation"
     ]
     
     private let tableView: UITableView = {
@@ -90,6 +91,8 @@ private extension MainViewController {
             return AngryViewController()
         case "SubView Animation Test":
             return SubViewAnimationController()
+        case "Layout Animation":
+            return LayoutAnimationViewController()
         default:
             return UIViewController()
         }
